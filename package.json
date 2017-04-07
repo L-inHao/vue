@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-static": "^1.0.3",
+    "mysql": "^2.13.0"
+  }
+}

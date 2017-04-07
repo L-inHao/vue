@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/vue.js"></script>
+
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+        .editPanel{
+            width: 500px;
+            position: fixed;
+            left:50%;
+            top:100px;
+            margin-left: -250px;
+            z-index: 2001;
+        }
+        .shadow{
+            width: 100%;
+            height: 100%;
+            background: #000;
+            opacity: 0.3;
+            filter:alpha(opacity:30);
+            position: fixed;
+            left:0;
+            top:0;
+            z-index: 2000;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!--新增留言表单 start-->
+        <div class="row">
+            <div class="form-horizontal">
+                <form class="form">
+                    <div class="form-group">
+                        <label for="txtName" class="col-md-1 control-label">姓名：</label>
+                        <div class="col-md-6">
+                            <input id="txtName" type="text" class="form-control" v-model="name">
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="txtAge" class="col-md-1 control-label">年龄：</label>
+                        <div class="col-md-6">
+                            <input id="txtAge" type="text" class="form-control" v-model="age">
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="txtMsg" class="col-md-1 control-label">留言：</label>
+                        <div class="col-md-6">
+                            <textarea id="txtMsg" v-model="content" class="form-control" name="" id="" cols="30" rows="3"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="form-group ">
+                        <input type="button" @click="addMsg" value="提交" class="btn btn-primary col-md-offset-2">
+                        <input type="reset" value="重置" class="btn btn-warning col-md-offset-1">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--新增留言表单 end-->
+
+
+        <div class="row">
+            <!--分页 start-->
+            <nav aria-label="Page navigation" class="pull-right">
+                <ul class="pagination">
+                    <li @click="prePage">
+                        <a href="javascript:;" aria-label="Previous">
+                            <span aria-hidden="true">上一页</span>
+                        </a>
+                    </li>
+                    <li  :class="{active:val==curPage}" v-for="val in pageCount" @click="getPageMsg(val)"><a href="javascript:;">{{val}}</a></li>
+
+                    <li @click="nextPage">
+                        <a href="javascript:;" aria-label="Next">
+                            <span aria-hidden="true">下一页</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!--分页 end-->
+
+            <!--数据列表 start-->
+            <table class="table table-hover table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <th class="text-center col-md-1">ID</th>
+                        <th class="text-center col-md-2">姓名</th>
+                        <th class="text-center col-md-2">年龄</th>
+                        <th class="text-center">内容</th>
+                        <th class="text-center col-md-2">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="5" class="text-center text-danger" v-show="msgList.length==0">暂无留言...</td>
+                    </tr>
+                    <tr v-cloak class="text-center" v-for="(msg,index) in msgList">
+                        <td>
+                            {{msg.id}}
+                        </td>
+                        <td>{{msg.name}}</td>
+                        <td>{{msg.age}}</td>
+                        <td>{{msg.content}}</td>
+                        <td>
+                            <button class="btn btn-success" @click="edit(msg.id)">修改</button>
+                            <button class="btn btn-danger" data-toggle="modal" data-target=".delPanel" @click="delId=msg.id" >删除</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+            <!--数据列表 end-->
+
+        </div>
+
+        <!--删除弹层 start-->
+        <div class="modal fade delPanel" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        提示
+                    </div>
+                    <div class="modal-body">
+                        真的要删除吗？删了就回不来了！
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" @click="delOK()" >确定</button>
+                        <button class="btn btn-default"  data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--删除弹层 end-->
+
+        <!-- 修改弹层 start -->
+        <div class="panel panel-primary editPanel" v-show="editPanel">
+            <div class="panel-heading">修改</div>
+            <div class="panel-body">
+                <div class="form-horizontal">
+                    <form class="form">
+                        <div class="form-group">
+                            <label for="editName" class="control-label col-md-3">姓名：</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="editName" v-model="editName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editAge" class="control-label col-md-3">年龄：</label>
+                            <div class="col-md-8">
+                                <input type="number" class="form-control" id="editAge" v-model="editAge">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editContent" class="control-label col-md-3">留言：</label>
+                            <div class="col-md-8">
+                                <textarea class="form-control" cols="30" rows="3" id="editContent" v-model="editContent"></textarea>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <div class="panel-footer text-center">
+                <button class="btn btn-success" @click="editOK" >保存</button>
+                <button class="btn btn-default col-md-offset-1" @click="editPanel=false;isShadow=false;" >取消</button>
+            </div>
+        </div>
+
+        <!-- 修改弹层 end -->
+
+        <!--遮罩层 start-->
+        <div class="shadow" v-show="isShadow"></div>
+        <!--遮罩层 end-->
+
+
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
