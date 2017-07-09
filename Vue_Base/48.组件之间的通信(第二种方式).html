@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="odiv">
+        <my-a></my-a>
+        <my-b></my-b>
+    </div>
+
+    <script type="x-template" id="a">
+        <div @click="a">
+            <h1>我是A组件:{{msg}}</h1>
+        </div>
+    </script>
+
+    <script type="x-template" id="b">
+        <div @click="b">
+            <h1>我是B组件{{msg||'默认数据'}}</h1>
+        </div>
+    </script>
+
+
+    <script>
+        let ev=new Vue();//事件管理
+
+
+        Vue.component('my-a',{
+            template:'#a',
+            data(){
+                return {
+                    msg:'A data'
+                }
+            },
+            methods:{
+                a(){
+                    ev.$emit('a-say',this.msg);
+                }
+            },
+            mounted(){
+                ev.$on('b-say',(time)=>{
+                    this.msg=time;
+                })
+            }
+        });
+        Vue.component('my-b',{
+            template:'#b',
+            data(){
+                return {
+                    msg:'',
+                    time:'B data'
+                }
+            },
+            methods:{
+                b(){
+                    ev.$emit('b-say',this.time)
+                }
+            },
+            mounted(){
+                ev.$on('a-say',(msg)=>{
+                    this.msg=msg;
+                })
+            }
+        });
+        new Vue({
+            el:"#odiv",
+            data:{
+                msg:"fu-msg"
+            }
+        })
+    </script>
+</body>
+
+</html>

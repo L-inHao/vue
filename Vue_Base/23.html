@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <script src="jquery.js"></script>
+    <script src="axios.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="obox">
+        <input type="button" value="按钮" @click="get">
+        {{m}}
+    </div>
+    <script>
+            new Vue({
+                el:'#obox',
+                data:{
+                    m:''
+                },
+                methods:{
+                    get(){
+                       axios.get('21',{
+                            params:{
+
+                            }
+                       }).then((res)=>{
+                           this.m=res.data;
+                       },()=>{
+                            console.log("错了");
+                       })
+
+                    }
+                }
+            })
+    </script>
+</body>
+</html>

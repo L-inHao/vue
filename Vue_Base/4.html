@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="odiv" >
+        {{a}}
+        <input type="button" value="alert" @click="alert">
+        <input type="button" value="按钮" @click="show">
+    </div>
+
+    <script>
+        new Vue({
+            el:'#odiv',
+            data:{
+                a:"点这里"
+            },
+            methods:{
+                alert(){
+                    alert(123);
+                },
+                show(){
+                    alert(456);
+                }
+            }
+
+
+        })
+    </script>
+</body>
+
+</html>

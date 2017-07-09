@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+            <ul>
+                <li><router-link to="/home">主页</router-link></li>
+                <li><router-link to="/news">新闻</router-link></li>
+                <li><router-link to="/weiz">未知</router-link></li>
+            </ul>
+            <div>
+                    <router-view></router-view>
+            </div>
+    </div>
+    <script>
+            let Home={
+                template:'<h3>我是主页</h3>'
+            };
+            let News={
+                template:'<h3>我是新闻页</h3>'
+            };
+            let Nfound={
+                template:'<h1>我是404</h1>'
+            };
+            /*配置*/
+            let routes=[
+                {path:'/home',component:Home},
+                {path:'/news',component:News},
+                {path:'/nfound',component:Nfound},
+                /*如果其它 找不到  就走redirect*/
+                {path:'/',redirect:'/home'},
+                {path:'*',redirect:'/nfound'}
+
+            ];
+            let router = new VueRouter({
+                routes
+            });
+            new Vue({
+                el:'#app',
+                router
+            })
+    </script>
+</body>
+<script>
+
+</script>
+</html>

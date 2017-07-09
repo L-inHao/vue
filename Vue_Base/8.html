@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <style>
+        .obox{
+            width: 200px;
+            height: 200px;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="odiv" >
+        <input type="button" value="按钮" @click="show">
+        <div class="obox"  v-if="bDown"></div>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#odiv',
+            data:{
+                bDown:true
+            },
+            methods:{
+                show(){
+                    this.bDown=!this.bDown;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

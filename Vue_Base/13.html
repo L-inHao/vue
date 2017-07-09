@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+
+    <style>
+        .odiv{
+            width: 200px;
+            height: 200px;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="obox">
+        <img src="src" alt="">
+        <img :src="src" alt="">
+    </div>
+    <script>
+        new Vue({
+            el:'#obox',
+            data:{
+                src:'https://www.baidu.com/img/bd_logo1.png'
+            }
+        })
+    </script>
+</body>
+</html>

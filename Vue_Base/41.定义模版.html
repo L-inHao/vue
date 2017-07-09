@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="obox">
+        <my-h3></my-h3>
+    </div>
+    <template id="list">
+        <ul>
+            <li v-for="i in msg">{{i}}</li>
+        </ul>
+    </template>
+<script>
+    Vue.component('my-h3',{
+        template:'#list',
+        data(){
+            return {
+                msg:['a','b','c']
+            }
+        },
+        methods:{
+            fnClick(){
+                this.msg=Date.now();
+            }
+        }
+    });
+    new Vue({
+        el:'#obox',
+        components:{
+            'my-h4':{
+                template:`<h3>标题</h3>`
+            }
+        }
+    });
+</script>
+</body>
+
+</html>

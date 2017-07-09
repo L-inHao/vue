@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/log">登陆</router-link>
+        <router-view></router-view>
+    </div>
+<template id="log">
+    <div>
+        <h3>登陆</h3>
+    </div>
+</template>
+</body>
+<script>
+    let Log={
+        template:"#log",
+    }
+    let routes=[
+        {path:'/log',component:Log}
+    ];
+    let router=new VueRouter({
+            routes
+    });
+    new Vue({
+        el:'#app',
+        router
+    })
+
+</script>
+</html>

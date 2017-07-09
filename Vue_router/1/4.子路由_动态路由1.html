@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+    <style>
+        .router-link-active{
+            font-size: 30px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+            <ul>
+                <li><router-link to="/home">主页</router-link></li>
+                <li><router-link to="/news">新闻</router-link></li>
+            </ul>
+            <div>
+                    <router-view></router-view>
+            </div>
+
+    </div>
+    <template id="news-tpl">
+        <div>
+            <h3>我是新闻页</h3>
+            <div>
+                <router-link to="/news/001">新闻1</router-link>
+                <router-link to="/news/002">新闻2</router-link>
+                <router-view></router-view>
+            </div>
+        </div>
+    </template>
+    <template id="newsdtill">
+        <div>
+                <!--动态匹配-->
+            <h3>我是新闻{{$route.params.id}}</h3>
+        </div>
+    </template>
+    <template id="home">
+        <div>
+            <h1>我是主页</h1>
+            <router-link to="/home/log">登陆</router-link>
+            <router-link to="/home/res">注册</router-link>
+            <router-view></router-view>
+        </div>
+    </template>
+    <template id="user">
+        <div>
+            <h1 v-if="$route.params.type=='log'">用户登陆</h1>
+            <h1 v-else="$route.params.type=='res'">用户注册</h1>
+        </div>
+    </template>
+    <script>
+            let Home={
+                template:'#home'
+            };
+            let News={
+                template:'#news-tpl'
+            };
+            let NewsDtill={
+                template:'#newsdtill'
+            };
+            let User={
+                template:'#user'
+            };
+            /*配置*/
+            let routes=[
+                {path:'/home',component:Home,
+                    children:[
+                        {path:"/home/:type",component:User},
+                    ]
+                },
+                {path:'/news',component:News,
+                    children:[
+                        {path:"/news/:id",component:NewsDtill}
+                    ]
+                }
+            ];
+            let router = new VueRouter({
+                routes
+            });
+            new Vue({
+                el:'#app',
+                router
+            })
+    </script>
+</body>
+<script>
+
+</script>
+</html>

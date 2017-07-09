@@ -1,0 +1,16 @@
+
+router实例身上方法:
+    都是重定向
+    router.push({path:'/aaa'})  生成历史记录
+    router.replace({path:'/aaa'}) 不会
+
+命名视图:看API
+History 模式:
+        路径里面'#'去掉 必须使用History
+        必须有服务器支持
+     mode:history
+----------------------------
+路由切换的钩子函数:
+        路由切换之前
+
+        路由切换之后

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="box">
+            <div v-text="msg"></div>
+            <div v-html="msg1"></div>
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                msg:'welcome',
+                msg1:'<h1>hehe</h1>'
+            },
+            methods:{
+              show(){
+                  alert(123)
+              }
+            }
+        })
+    </script>
+</body>
+</html>

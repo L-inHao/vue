@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+
+    <style>
+        div div{
+            width: 200px;
+            height: 200px;
+            background: #000;
+        }
+        .box{
+            background:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="obox">
+        <input type="checkbox" v-model="check">
+        {{check}}
+        <div :class="{box:check}"></div>
+    </div>
+    <script>
+        new Vue({
+            el:'#obox',
+            data:{
+               check:''
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <script src="vuex.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            数据:{{count}}
+        </div>
+        <input type="button" @click="add"value="按钮">
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            //state
+            data:{
+                count:0
+            },
+            //actions
+            methods:{
+                add(){
+                    this.count++;
+                }
+            }
+        })
+        /*
+          state，驱动应用的数据源；
+         view，以声明方式将state映射到视图；
+         actions，响应在view上的用户输入导致的状态变化。
+         */
+    </script>
+</body>
+</html>

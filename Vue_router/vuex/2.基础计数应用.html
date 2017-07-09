@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <script src="vuex.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>{{count}}</div>
+        <input type="button" value="+" @click="add">
+        <input type="button" value="-" @click="remove">
+    </div>
+   <script>
+       const store = new Vuex.Store({
+               state:{
+                   n:0
+               },
+               mutations:{
+                   a(state){
+                       state.n++;
+                   },
+                   b(state){
+                       state.n--;
+                   }
+               }
+       });
+        new Vue({
+            el:'#app',
+            computed:{
+                count(){
+                    return store.state.n;
+                }
+            },
+            methods:{
+                add(){
+                    store.commit('a');
+                },
+                remove(){
+                    store.commit('b')
+                }
+            }
+        })
+   </script>
+</body>
+</html>

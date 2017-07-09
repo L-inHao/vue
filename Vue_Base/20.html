@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="obox">
+        <input type="text" v-model="m">
+        {{msg}}
+    </div>
+    <script>
+        new Vue({
+            el:'#obox',
+            data:{
+                m:''
+            },
+            computed:{
+                msg(){
+                    return this.m.split('').reverse().join('');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

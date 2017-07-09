@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="obox">
+        <my-h3></my-h3>
+    </div>
+<script>
+    Vue.component('my-h3',{
+        template:'<h3>{{msg}}</h3>',
+        data(){
+            return {
+                msg:'welcome'
+            }
+        }
+    });
+    new Vue({
+        el:'#obox',
+        components:{
+            'my-h3':{
+                template:`<h3>标题</h3>`
+            }
+        }
+    });
+</script>
+</body>
+
+</html>

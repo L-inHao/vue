@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ha-ha></ha-ha>
+    </div>
+</body>
+<script>
+    /*全局组件*/
+//    Vue_router.component('haha',{
+//        template:'<h1>helloword</h1>'
+//    });
+    let haHa={
+        template:'<h1>hello word</h1>'
+    };
+    new Vue({
+        el:'#app',
+        components:{
+            haHa
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="odiv">
+         我是父组件-->{{msg}}
+        <my-com :aaa="msg" ></my-com>
+    </div>
+    <script type="x-template" id="list">
+        <div @click="change">
+           我是子组件-->{{aaa}}
+        </div>
+    </script>
+    <script>
+        //双向数据流   Vue1子级改了父级也跟着改  Vue2不行
+            Vue.component('my-com',{
+                template:'#list',
+                props:['aaa'],
+                methods:{
+                    change(){
+                        this.aaa='bbb';
+                    }
+                }
+            });
+        let vm=new Vue({
+            el:'#odiv',
+            data:{
+                msg:"hello"
+            }
+        })
+    </script>
+</body>
+
+</html>

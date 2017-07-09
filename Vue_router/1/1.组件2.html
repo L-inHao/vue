@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ha-ha-b></ha-ha-b>
+    </div>
+</body>
+<script>
+    /*全局组件*/
+//    Vue_router.component('haha',{
+//        template:'<h1>helloword</h1>'
+//    });
+    let haHaB={
+        template:'<h1>hello word{{msg}}</h1>',
+        data(){
+            return {
+                msg:"我是组件"
+            }
+        }
+    };
+    new Vue({
+        el:'#app',
+        components:{
+            haHaB
+        }
+    })
+</script>
+</html>

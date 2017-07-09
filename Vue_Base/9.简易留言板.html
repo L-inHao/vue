@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <script src="vue.js"></script>
+    <script src="jquery.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="username" class="control-label col-sm-2">用户名:</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="username" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="age" class=" col-sm-2 control-label">年  龄:</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="age" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-8 text-center">
+                        <input type="button" value="添加" class="btn btn-primary">
+                        <input type="button" value="取消" class="btn btn-danger">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center">ID</th>
+                    <th class="text-center">用户名</th>
+                    <th class="text-center">年龄</th>
+                    <th class="text-center">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">1</td>
+                    <td class="text-center">张三</td>
+                    <td class="text-center">18</td>
+                    <td class="text-center">
+                        <button class="btn btn-warning btn-sm">删除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+
+    <style>
+        .odiv{
+            width: 200px;
+            height: 200px;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="obox">
+        <!--<div class="a"></div>-->
+       <!-- <div v-bind:class="a"></div>-->
+            <div :class="a"></div>
+    </div>
+    <script>
+        new Vue({
+            el:'#obox',
+            data:{
+                a:'odiv'
+            }
+        })
+    </script>
+</body>
+</html>

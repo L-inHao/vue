@@ -1,0 +1,90 @@
+    new Vue({
+             el:元素,
+             data:{
+                数据
+             }
+            })
+    @click
+    v-show="true/false"   显示/隐藏
+    v-if="条件"   true /false (控制DOM节点添加、删除)
+
+ -------------------------------
+ 简易留言板:
+    保证不闪屏
+        <div v-clock>
+        [v-clock]{
+            display:none;
+        }
+ 绑定事件: <input v-on:@click="">   @click
+ 绑定属性: <input v-bind:class="">  :class
+                        :src=""
+ 计算属性:computed
+        目的 编写代码
+---------------------------------
+交互:axios 没法跨域
+
+事件对象:
+    @click="show($event)";
+阻止冒泡:
+    ev.cancelBubble=true;
+    @.click.stop = "show";
+
+return false 碰见addEventListener 失效了  ev.preventDefault()
+阻止默认事件:
+    @contextmenu.prevent="show";
+键盘事件:
+    @keydown="show";
+    ev.keyCode   键码
+    @keydown.enter="show()"
+             up/down/delete/ctrl....
+    @keydown.13(键码)="show()";
+
+    v-text="msg"   输出纯文本   相当于 ng-bind  网速差的时候也不会出现 花括号
+    v-html="msg"   输出html标签
+Sql语句:
+    select * from users limit 0,5    (0代表从那考试 5代表)
+    select * from users order by id desc limit 0,5    (order by id desc 通过ID排序)
+
+生命周期(钩子函数):
+    mounted(){} //ready() vue 所有东西准备好了
+
+获取几条数据:
+    向上取整:Math.ceil(12.5) ->13
+    select count(*) as count from  users ; 有多少条数据
+
+生命周期:
+    mounted   updated   就这两个有用
+    created  比mounted早 数据可拿到 没法获取页面元素
+组件:
+        //全局组件
+       Vue.component('my-h3',{
+            template:'<h3>标题</h3>'
+       });
+       //局部组件
+       new Vue({
+               el:'#obox',
+               components:{
+                   'my-h3':{
+                       template:`<h3>标题</h3>`
+                   }
+               }
+       });
+       //定义模版   只能有一个根元素
+            <template id="list">
+               <ul>
+                   <li v-for="i in msg">{{i}}</li>
+               </ul>
+            </template>
+   组件之间通信:
+
+        子组件拿到父组件的数据:
+                <my-com :aaa="msg"></my-com>
+                    props:['aaa']
+        父组件拿到子组件的数据:
+                this.$emit(名字,数据)
+                <my-com @名字=函数>
+   第二种通信方式:(单一事件管理)
+        let ev = new Vue();
+        ev.$emit(事件名称,数据)
+        ev.$on(事件名称,(data)=>{})
+   第三种通信方式:(单一集中对象)

@@ -1,0 +1,27 @@
+1.链接
+2.展示
+3.路由配置
+     let routes=[
+                    {path:'/home',component:Home},
+                    {path:'/news',component:News}
+                ];
+4.配置用到路由上
+    let router = new VueRouter({
+                    routes
+                });
+5.路由放到vue里面
+    new Vue({
+                    el:'#app',
+                    router
+                })
+    路由激活状态: .router-link-active{}
+    其他用法:
+        子路由:
+           children:[
+            {path:'',component:''}
+            ...
+           ]
+        重定向:
+            {path:'/',redirect:'home'}
+            {path:'*',redirect:'home'}
+        $route.params   获取动态路由

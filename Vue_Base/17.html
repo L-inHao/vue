@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+
+    <style>
+        div div{
+            width: 200px;
+            height: 200px;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="obox">
+        width: <input type="text" v-model="width">
+        height: <input type="text" v-model="height">
+        <div :style="{width:width+'px',height:height+'px'}"></div>
+    </div>
+    <script>
+        new Vue({
+            el:'#obox',
+            data:{
+                width:'',
+                height:''
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <script src="jquery.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="obox">
+        <input type="button" value="按钮" @click="get">
+        {{m}}
+    </div>
+    <script>
+            new Vue({
+                el:'#obox',
+                data:{
+                    m:''
+                },
+                methods:{
+                    get(){
+                        $.ajax({
+                            url:'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
+                            data:{
+                                wd:'a'
+                            },
+                            dataType:'jsonp',
+                            jsonp:'cb'
+                        }).then((res)=>{
+                            this.m=res;
+                        },()=>{
+                            
+                        })
+                    }
+                }
+            })
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="obox">
+        {{msg.split('').reverse().join('')}}
+    </div>
+    <script>
+        new Vue({
+            el:'#obox',
+            data:{
+                msg:'welcome vue'
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="odiv">
+        父组件-->{{msg}}
+        <my-h @child-say="show"></my-h>
+    </div>
+
+   <template id="list">
+        <div @click="send">
+            <h3>
+                我是子组件:{{msg}}
+            </h3>
+        </div>
+   </template>
+    <script>
+        Vue.component('my-h',{
+            template:'#list',
+            data(){
+              return  {
+                  msg:"child msg"
+              }
+            },
+            methods:{
+                send(){
+
+                    this.$emit('child-say',this.msg);
+                }
+            }
+        });
+        new Vue({
+            el:"#odiv",
+            data:{
+                msg:"fu-msg"
+            },
+            methods:{
+                show(msg){
+                    this.msg=msg;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

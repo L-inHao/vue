@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="odiv">
+        <div>
+            <h1>父组件:{{msg}}</h1>
+        </div>
+        <my-a></my-a>
+        <my-b></my-b>
+    </div>
+
+    <script type="x-template" id="a">
+        <div >
+            <h1>我是A组件:{{a}}</h1>
+        </div>
+    </script>
+
+    <script type="x-template" id="b">
+        <div @click="change">
+            <h1>我是B组件:{{b}}</h1>
+        </div>
+    </script>
+
+    <script>
+        const stop={
+            a:'a msg',
+            b:'b msg',
+            msg:'Welcome vue'
+        };
+        Vue.component('my-a',{
+            template:'#a',
+            data(){
+                return stop;
+            }
+        });
+        Vue.component('my-b',{
+            template:'#b',
+            data(){
+                return stop;
+            },
+            methods:{
+                change(){
+                     this.msg='vue'
+                }
+            }
+        });
+        new Vue({
+            el:"#odiv",
+            data:stop
+        })
+    </script>
+</body>
+
+</html>

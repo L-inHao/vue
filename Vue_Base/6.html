@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <style>
+        .obox{
+            width: 200px;
+            height: 200px;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="odiv" >
+        <input type="button" value="按钮" @click="show">
+        <div class="obox"></div>
+    </div>
+
+    <script>
+        new Vue({
+            el:'#odiv',
+            data:{
+
+            },
+            methods:{
+                show(){
+                    let oBox=document.querySelector('.obox');
+                    if(oBox.style.display=='block'){
+                        oBox.style.display='none';
+                    }else{
+                        oBox.style.display='block';
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

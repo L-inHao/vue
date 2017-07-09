@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="odiv" >
+        {{a}}
+        <input type="button" value="按钮" @click="show">
+    </div>
+
+    <script>
+        new Vue({
+            el:'#odiv',
+            data:{
+                a:"hello"
+            },
+            methods:{
+                show(){
+                    alert(this.a);
+                    this.a="word";
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

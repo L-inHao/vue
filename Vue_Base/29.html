@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <style>
+        div div{
+            width: 200px;
+            height: 200px;
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div @click="show">
+            <input type="button" value="按钮" @contextmenu.prevent="show1()">
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+
+            },
+            methods:{
+                show(){
+                    alert(123);
+                },
+                show1(ev){
+                    alert(345);
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>
